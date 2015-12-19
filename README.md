@@ -2,7 +2,7 @@
 
 A versatile stream filter for Node.js.
 
-This package is not affliated with [Tim-Smart](https://www.npmjs.com/~Tim-Smart)’s [filter](https://www.npmjs.com/package/filter)
+This package is not affliated with [Tim-Smart](https://www.npmjs.com/~Tim-Smart)’s [filter](https://www.npmjs.com/package/filter).
 
 ## Install
 
