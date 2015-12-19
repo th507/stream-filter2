@@ -1,4 +1,6 @@
 var through = require('through2')
+// include Matteo Collina's amazing split2 library
+var split = require('split2')
 var Queue = require('./lib/queue')
 
 /**
@@ -63,4 +65,5 @@ exports.head = head
 exports.tail = tail
 exports.some = some
 exports.through = through
+exports.split = split
 
