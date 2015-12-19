@@ -11,27 +11,27 @@ $ npm install filter2
 ```
 
 ## Usage
-```bash
+```js
 var filter = require('filter2')
 ```
 
 ### Passthrough (do nothing)
 
-```bash
+```js
 fs.createReadStream('./foo.txt')
   .pipe(filter())
 ```
 
 ### Get the first n chunks
 
-```bash
+```js
 fs.createReadStream('./foo.txt')
   .pipe(filter.head(5))
 ```
 
 ### Get the last n chunks
 
-```bash
+```js
 fs.createReadStream('./foo.txt')
   .pipe(filter.tail(5))
 ```
@@ -39,7 +39,7 @@ fs.createReadStream('./foo.txt')
 
 ### Get the filtered chunks
 
-```bash
+```js
 fs.createReadStream('./foo.txt')
   .pipe(filter(function(chunk, encoding, next) {
     return /bar/.test(chunk, encoding, next)
@@ -53,7 +53,7 @@ Usually `filter` only makes sense when using after `filter.split()`.
 
 ### Get a custom set in chunks
 
-```bash
+```js
 function MySet(n) {
 	this._array = Array(n)
 }
@@ -64,6 +64,7 @@ MySet.prototype.push = function(thing) {
 MySet.prototype.forEach = function() {
 	Array.prototype.forEach.apply(this._array, arguments)
 }
+
 
 var mySet = new MySet(4)
 fs.createReadStream('./foo.txt')
@@ -76,7 +77,7 @@ fs.createReadStream('./foo.txt')
 
 This is just an alias of [Matteo Collina](mailto:hello@matteocollina.com)'s [split2](https://github.com/mcollina/split2). Please refers to [split2 README](https://github.com/mcollina/split2) for more details.
 
-```bash
+```js
 fs.createReadStream('./foo.txt')
   .pipe(filter.split())
   // split and rearrange chunks by line break
