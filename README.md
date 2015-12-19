@@ -42,6 +42,7 @@ fs.createReadStream('./foo.txt')
 ```js
 fs.createReadStream('./foo.txt')
   .pipe(filter(function(chunk, encoding, next) {
+    // returns true to make chunks flow downstream
     return /bar/.test(chunk, encoding, next)
   }))
 ```
