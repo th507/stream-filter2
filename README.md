@@ -22,14 +22,14 @@ fs.createReadStream('./foo.txt')
   .pipe(filter())
 ```
 
-### Get the first n chunks
+### Get the first 5 chunks
 
 ```js
 fs.createReadStream('./foo.txt')
   .pipe(filter.head(5))
 ```
 
-### Get the last n chunks
+### Get the last 5 chunks
 
 ```js
 fs.createReadStream('./foo.txt')
