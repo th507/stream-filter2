@@ -1,17 +1,14 @@
 var through = require('through2')
 var Queue = require('./lib/queue')
 
-function head(n) {
-  return through(function(chunk, e, cb) {
-    if (n-- <= 0) chunk = null
-
-    cb(null, chunk)
-  })
-}
-
+/**
+ * Pushes chunk of stream into custom set and 
+ * calls forEach on the set when upstream drains
+ *
+ * @param set a custom Set instance with a set::push and set::forEach
+ * @return a through2 function 
+ **/
 function some(set) {
-  //var set = new SetLike(n)
-
   return through(function(chunk, e, cb) {
     set.push(chunk)
     cb(null)
@@ -21,10 +18,28 @@ function some(set) {
   })
 }
 
+/**
+ * passthrough only the first n chunks of a stream
+ **/
+function head(n) {
+  return through(function(chunk, e, cb) {
+    // countdown to zero
+    if (n-- <= 0) chunk = null
+
+    cb(null, chunk)
+  })
+}
+
+/**
+ * passthrough only the last n chunks of a stream
+ **/
 function tail(n) {
   return some(new Queue(n))
 }
 
+/**
+ * passthrough only when filter function returns true
+ **/
 function filter(fn) {
   return through(function(chunk, e, cb) {
     if (fn && typeof fn === 'function' && !fn(chunk, e, cb)) chunk = null
@@ -33,13 +48,14 @@ function filter(fn) {
   })
 }
 
-
+/**
+ * passthrough the stream / do nothing
+ **/
 function passthrough() {
   return through(function(chunk, e, cb) {
     cb(null, chunk)
   })
 }
-
 
 exports = module.exports = filter
 exports.filter = filter
