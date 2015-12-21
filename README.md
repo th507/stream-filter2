@@ -86,6 +86,17 @@ fs.createReadStream('./foo.txt')
   // split and rearrange chunks by line break
 ```
 
+### Wrap around stream.Transform
+
+This is just an alias of [Rod Vagg](https://r.va.gg/)'s [through2](https://github.com/rvagg/through2). Please refers to [through2 README](https://github.com/rvagg/through2) for more details.
+
+```js
+fs.createReadStream('./foo.txt')
+  .pipe(filter.through(function(chunk, encoding, next) {
+    // write your transform function here
+  })
+```
+
 ## License
 Copyright (c) 2015 Jingwei "John" Liu
 
