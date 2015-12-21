@@ -1,5 +1,10 @@
 # filter2
 
+[![Build Status][travis-badge]][travis-url]
+[![NPM version][npm-badge]][npm-package]
+[![License][license-badge]][license]
+
+
 A versatile stream filter for Node.js.
 
 This package is not affliated with [Tim-Smart](https://www.npmjs.com/~Tim-Smart)’s [filter](https://www.npmjs.com/package/filter).
@@ -101,3 +106,10 @@ fs.createReadStream('./foo.txt')
 Copyright (c) 2015 Jingwei "John" Liu
 
 Licensed under the MIT license.
+
+[travis-badge]: https://img.shields.io/travis/th507/stream-filter2.svg?style=flat-square
+[npm-badge]: https://img.shields.io/npm/v/filter2.svg?style=flat-square
+[license-badge]: http://img.shields.io/npm/l/stream-filter2.svg?style=flat-square
+[travis-url]: https://travis-ci.org/th507/stream-filter2
+[npm-package]: https://www.npmjs.com/package/filter2
+[license]: LICENSE
