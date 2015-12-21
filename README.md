@@ -70,6 +70,8 @@ MySet.prototype.forEach = function() {
 var mySet = new MySet(4)
 fs.createReadStream('./foo.txt')
   .pipe(filter.some(mySet))
+  // each chunk is pushed into mySet
+  // and when upstream drains, it
   // returns a set of chunks that mySet.forEach returns
 ```
 
