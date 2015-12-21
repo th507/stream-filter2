@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+    - "0.12"
+    - "4.2.3"
+    - "5.3.0"
+    - "io.js"
+
+script:
+    - "npm test"
