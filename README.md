@@ -109,7 +109,7 @@ Licensed under the MIT license.
 
 [travis-badge]: https://img.shields.io/travis/th507/stream-filter2.svg?style=flat-square
 [npm-badge]: https://img.shields.io/npm/v/filter2.svg?style=flat-square
-[license-badge]: http://img.shields.io/npm/l/stream-filter2.svg?style=flat-square
+[license-badge]: http://img.shields.io/npm/l/filter2.svg?style=flat-square
 [travis-url]: https://travis-ci.org/th507/stream-filter2
 [npm-package]: https://www.npmjs.com/package/filter2
 [license]: LICENSE
