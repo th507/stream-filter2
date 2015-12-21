@@ -27,6 +27,9 @@ fs.createReadStream('./foo.txt')
   .pipe(filter())
 ```
 
+or call with `filter.filter` for better symmetry.
+
+
 ### Get the first 5 chunks
 
 ```js
