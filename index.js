@@ -16,9 +16,7 @@ function some(set) {
     set.push(chunk)
     cb(null)
   }, function(cb) {
-    if (set && set.forEach && typeof set.forEach === 'function') {
-      set.forEach(this.push.bind(this))
-    }
+    set.forEach(this.push.bind(this))
     cb()
   })
 }
@@ -44,11 +42,27 @@ function tail(n) {
 
 /**
  * passthrough only when filter function returns true
- * if fn is missing or fn is not a function
- * filter will passthrough all chunks downstream
  **/
 function filter(fn) {
-  return some(new Sieve(fn))
+  // save comparison with each chunk push
+  if (!(fn && typeof fn === 'function')) {
+    return passthrough()
+  }
+
+  return through(function(chunk, e, cb) {
+    if (!fn(chunk, e, cb)) chunk = null
+
+    cb(null, chunk)
+  })
+}
+
+/**
+ * passthrough the stream / do nothing
+ **/
+function passthrough() {
+  return through(function(chunk, e, cb) {
+    cb(null, chunk)
+  })
 }
 
 exports = module.exports = filter
