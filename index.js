@@ -16,7 +16,9 @@ function some(set) {
     set.push(chunk)
     cb(null)
   }, function(cb) {
-    set.forEach(this.push.bind(this))
+    if (set && set.forEach && typeof set.forEach === 'function') {
+      set.forEach(this.push.bind(this))
+    }
     cb()
   })
 }
