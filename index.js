@@ -2,6 +2,7 @@ var through = require('through2')
 // include Matteo Collina's amazing split2 library
 var split = require('split2')
 var Queue = require('./lib/queue')
+var Sieve = require('./lib/sieve')
 
 /**
  * Pushes chunk of stream into custom set and 
@@ -41,22 +42,11 @@ function tail(n) {
 
 /**
  * passthrough only when filter function returns true
+ * if fn is missing or fn is not a function
+ * filter will passthrough all chunks downstream
  **/
 function filter(fn) {
-  return through(function(chunk, e, cb) {
-    if (fn && typeof fn === 'function' && !fn(chunk, e, cb)) chunk = null
-
-    cb(null, chunk)
-  })
-}
-
-/**
- * passthrough the stream / do nothing
- **/
-function passthrough() {
-  return through(function(chunk, e, cb) {
-    cb(null, chunk)
-  })
+  return some(new Sieve(fn))
 }
 
 exports = module.exports = filter
