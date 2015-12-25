@@ -7,8 +7,9 @@ var filter = require('../')
 var Queue = require('../lib/queue')
 
 var lorem = path.join(__dirname, 'lorem-ipsum.txt')
+var foo = path.join(__dirname, 'foo.txt')
 
-test('filter::filter (passthrough)', function(t) {
+test('filter.filter (passthrough)', function(t) {
   t.plan(1)
 
   var str = ''
@@ -28,7 +29,7 @@ test('filter::filter (passthrough)', function(t) {
 })
 
 
-test('filter::filter', function(t) {
+test('filter.filter', function(t) {
   t.plan(2)
 
   var str = ''
@@ -53,7 +54,7 @@ test('filter::filter', function(t) {
 })
 
 
-test('filter::head', function(t) {
+test('filter.head', function(t) {
   t.plan(1)
 
   var str = ''
@@ -76,8 +77,31 @@ test('filter::head', function(t) {
     }))
 })
 
+test('filter.head with fewer chunks', function(t) {
+  t.plan(1)
 
-test('filter::tail', function(t) {
+  var str = ''
+
+  var highWaterMark = 20
+
+  var head_count = 2
+
+  fs.createReadStream(foo, {highWaterMark: highWaterMark})
+    .pipe(filter.head(head_count))
+    .pipe(through(function(ch, e, cb) {
+      str += ch.toString('utf8')
+
+      cb()
+    }, function (cb) {
+      var tmp = fs.readFileSync(foo, 'utf8')
+
+      t.equal(tmp, str)
+      cb()
+    }))
+})
+
+
+test('filter.tail', function(t) {
   t.plan(1)
 
   var str = ''
@@ -104,7 +128,30 @@ test('filter::tail', function(t) {
     }))
 })
 
-test('filter::customSet', function(t) {
+test('filter.tail with fewer chunks', function(t) {
+  t.plan(1)
+
+  var str = ''
+
+  var highWaterMark = 20
+
+  var head_count = 2
+
+  fs.createReadStream(foo, {highWaterMark: highWaterMark})
+    .pipe(filter.tail(head_count))
+    .pipe(through(function(ch, e, cb) {
+      str += ch.toString('utf8')
+
+      cb()
+    }, function (cb) {
+      var tmp = fs.readFileSync(foo, 'utf8')
+
+      t.equal(tmp, str)
+      cb()
+    }))
+})
+
+test('filter.some', function(t) {
   t.plan(2)
 
   var str = ''

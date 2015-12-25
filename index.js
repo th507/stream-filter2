@@ -2,7 +2,7 @@ var through = require('through2')
 // include Matteo Collina's amazing split2 library
 var split = require('split2')
 var Queue = require('./lib/queue')
-var Sieve = require('./lib/sieve')
+// var Sieve = require('./lib/sieve')
 
 /**
  * Pushes chunk of stream into custom set and 
