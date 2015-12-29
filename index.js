@@ -1,3 +1,5 @@
+'use strict'
+
 var through = require('through2')
 // include Matteo Collina's amazing split2 library
 var split = require('split2')
