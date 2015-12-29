@@ -3,6 +3,8 @@
 [![Build Status][travis-badge]][travis-url]
 [![NPM version][npm-badge]][npm-package]
 [![License][license-badge]][license]
+[![NPM desciption][npm-hero]][npm-package]
+
 
 
 A versatile stream filter for Node.js.
@@ -115,4 +117,5 @@ Licensed under the MIT license.
 [license-badge]: http://img.shields.io/npm/l/filter2.svg?style=flat-square
 [travis-url]: https://travis-ci.org/th507/stream-filter2
 [npm-package]: https://www.npmjs.com/package/filter2
+[npm-hero]: https://nodei.co/npm/filter2.png
 [license]: LICENSE
